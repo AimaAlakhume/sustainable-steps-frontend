@@ -1,0 +1,67 @@
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/resets' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("../../assets/backgrounds/planet-homepage.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid white;
+    background: transparent;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    animation-name: bounce;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $green-tea;
+    font-family: "Raleway Semi Bold";
+
+    @include tablet {
+        margin: 20px 0;
+    }
+
+    &:hover {
+        backdrop-filter: blur(0px);
+    }
+
+    &--sign-up {
+        top: 2rem;
+        left: 25rem;
+    }
+
+    &--login {
+        left: 45rem;
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(10px, 10px, 0);
+    }
+}
