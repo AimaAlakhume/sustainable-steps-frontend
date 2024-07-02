@@ -3,17 +3,23 @@
 @use "typography" as *;
 @use "resets" as *;
 
+html {
+    background-color: $white;
+}
+
 header {
     width: 100%;
 }
 
-// body,
-// *::placeholder,
-// button {
-//     font-family: "Titillium Web", Arial, Helvetica, sans-serif;
-// }
+body,
+*::placeholder,
+button {
+    color: $rich-black;
+    font-family: "Raleway Light", Arial, Helvetica, sans-serif;
+}
 
 h1 {
+    font-family: "Raleway Bold";
     font-size: 1.75rem;
     line-height: 2.25rem;
 }

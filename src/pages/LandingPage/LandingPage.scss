@@ -4,9 +4,9 @@
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/variables' as *;
 
-body,
-html {
-    height: 100%;
+.main-body {
+    height: 100vh;
+    width: 100vw;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     background-image: url("../../assets/backgrounds/planet-homepage.jpg");
@@ -26,12 +26,10 @@ html {
     border: 5px solid white;
     background: transparent;
     position: relative;
-    transition: all 0.3s ease;
     cursor: pointer;
     backdrop-filter: blur(4px);
-    animation-name: bounce;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
+    //animation: fadeInAnimation ease 10s;
+    animation: bounce ease 2s infinite;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,6 +54,15 @@ html {
     }
 }
 
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 @keyframes bounce {
     from {
         transform: translate3d(0, 0, 0);
@@ -65,3 +72,4 @@ html {
         transform: translate3d(10px, 10px, 0);
     }
 }
+

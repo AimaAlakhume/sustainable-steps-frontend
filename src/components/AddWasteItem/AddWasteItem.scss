@@ -1,0 +1,181 @@
+@use '../../styles/partials/resets' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography' as *;
+
+.main {
+    width: 91%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -4.25rem;
+    background-color: $white;
+    border-radius: .25rem;
+
+    @include tablet {
+        margin-top: -5.75rem;
+    }
+}
+
+.nav--add-warehouse {
+    padding: 2rem 1.5rem 1.5rem;
+    margin: 0;
+    display: flex;
+    align-items: left;
+    border: 0;
+    border-bottom: 0.0625rem solid $cloud;
+
+    &__title {
+        font-size: 1.75rem;
+        text-align: left;
+        padding: 0;
+        padding-left: 2rem;
+        background-image: url('../../assets/icons/arrow_back-24px.svg');
+        background-repeat: no-repeat;
+        background-size: 1.5rem;
+        background-position-y: 50%;
+
+        &--tablet {
+            display: none;
+
+            @include tablet {
+                display: inline;
+            }
+        }
+    }
+}
+
+.form { 
+    box-shadow: 0 0 0.3125rem $cloud;
+    -webkit-clip-path: inset(0rem -0.3125rem -0.3125rem -0.3125rem);
+    clip-path: inset(0rem -0.3125rem -0.3125rem -0.3125rem);
+    &__cta {
+        width: 100%;
+        padding: 1rem 2rem;
+        background-color: rgb(247, 248, 249, .7);
+        display: flex;
+        justify-content: right;
+
+        &__inner-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+
+            @include tablet {
+                width: 45%;
+            }
+
+            @include desktop {
+                width: 25%;
+            }
+        }
+
+        &--cancel {
+            width: 50%;
+            height: 2.75rem !important;
+            color: $slate;
+            font-family: "Titillium Web Semi-Bold";
+            margin-right: 1rem;
+            background-color: $white;
+            border: 0.0625rem solid $cloud;
+
+            @include tablet {
+                width: 45%;
+            }
+        }
+
+        &--add {
+            width: 50%;
+            border-radius: 6.25rem;
+            padding: 1.25rem;
+            font-family: "Titillium Web Semi-Bold";
+            color: $white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $instock-indigo;
+
+            @include tablet {
+                width: 55%;
+            }
+        }
+    }
+}
+
+.update {
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+        width: 100%;
+        flex-direction: row;
+    }
+
+    &__label {
+        font-size: 0.8125rem;
+        text-transform: capitalize;
+        font-family: 'Titillium Web Semi-Bold';
+    }
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 0.0625rem solid $cloud;
+        padding: 1rem 1.5rem;
+
+        @include tablet {
+            width: 50%;
+            border-bottom: none;
+
+        }
+
+        &__title {
+            padding-bottom: 1.5rem;
+            font-family: 'Titillium Web Semi-Bold';
+        }
+
+        &__input {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 1rem;
+        }
+    }
+
+    &__contact {
+        @extend .update__details;
+
+        @include tablet {
+            padding: 0 1.5rem;
+            margin: 1rem 0;
+            border-left: 0.0625rem solid $cloud;
+        }
+
+        &__title {
+            @extend .update__details__title;
+        }
+
+        &__input {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 1rem;
+        }
+    }
+}
+
+
+input[type=text] {
+    color: $instock-black;
+    border-radius: 1.25rem;
+    border: 0.0625rem solid $cloud;
+    font-family: 'Titillium Web';
+    padding: .5rem 1rem;
+
+    &::placeholder {
+        color: $slate;
+        font-size: 0.8125rem;
+    }
+}
+
+a:has(h1):visited {
+    color: $instock-black;
+}

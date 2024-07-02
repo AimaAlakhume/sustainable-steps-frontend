@@ -1,0 +1,104 @@
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/resets' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+.main-body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("../../assets/backgrounds/planet-homepage.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 18rem;
+    height: auto;
+}
+
+.circle {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border: 0.3125rem solid white;
+    background: transparent;
+    cursor: pointer;
+    backdrop-filter: blur(0.25rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $green-tea;
+    font-family: "Raleway Semi Bold";
+    position: absolute;
+
+    @include tablet {
+        width: 10rem;
+        height: 10rem;
+        margin: 1.25rem 0;
+    }
+
+    &:hover {
+        backdrop-filter: blur(0rem);
+    }
+
+    &--waste-diary {
+        top: 20%;
+        left: 10%;
+        animation: orbit linear 3s infinite;
+
+        @include tablet {
+            top: 18%;
+            left: 12%;
+        }
+    }
+
+    &--greenbot {
+        top: 73%;
+        left: 21%;
+        animation: orbit linear 3s infinite;
+
+        @include tablet {
+            top: 62%;
+            left: 24%
+        }
+    }
+
+    &--garden {
+        bottom: 60%;
+        left: 71%;
+        animation: orbit-reverse linear 3s infinite;
+    }
+
+    &--wastewise {
+        bottom: 5%;
+        left: 65%;
+        animation: orbit-reverse linear 3s infinite;
+    }
+}
+
+@keyframes orbit {
+    from {
+        transform: rotate(0deg) translateX(10px) rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg) translateX(10px) rotate(-360deg);
+    }
+}
+
+@keyframes orbit-reverse {
+    from {
+        transform: rotate(360deg) translateX(10px) rotate(-360deg);
+    }
+
+    to {
+        transform: rotate(0deg) translateX(10px) rotate(0deg);
+    }
+}
