@@ -6,48 +6,65 @@ import { UnstyledInputBasic } from '../InputBox/InputBox';
 export const WasteLog = () => {
     return (
         <main className='main'>
-                <div className='form'>
-                    <article className='update'>
-                        <section className='update__details'>
-                            <h2 className='update__details__title'>Today's Waste</h2>
-                            <section className='update__details__input'>
-                                <h4>Plastic water bottle</h4>
-                                <p className='update__label'>reused</p>
-                                <p> 4 </p>
+                    <article className='diary'>
+                        <section className='diary__entries'>
+                            <h2 className='diary__entries__title'>Today's Waste</h2>
+                            <section className='diary__entry'>
+                                <section className='diary__entry__details'>
+                                    <h4>Plastic water bottle</h4>
+                                    <p className='diary__label'>reused</p>
+                                </section>
+                                <section className='diary__entry__quantity'>
+                                    <p> 4 </p>
+                                </section>
                             </section>
-                            <section className='update__details__input'>
-                                <h4>Plastic water bottle</h4>
-                                <p className='update__label'>reused</p>
-                                <p> 4 </p>
+                            <section className='diary__entry'>
+                                <section className='diary__entry__details'>
+                                    <h4>Plastic water bottle</h4>
+                                    <p className='diary__label'>reused</p>
+                                </section>
+                                <section className='diary__entry__quantity'>
+                                    <p> 4 </p>
+                                </section>
                             </section>
-                            <section className='update__details__input'>
-                                <h4>Plastic water bottle</h4>
-                                <p className='update__label'>reused</p>
-                                <p> 4 </p>
+                            <section className='diary__entry'>
+                                <section className='diary__entry__details'>
+                                    <h4>Plastic water bottle</h4>
+                                    <p className='diary__label'>reused</p>
+                                </section>
+                                <section className='diary__entry__quantity'>
+                                    <p> 4 </p>
+                                </section>
                             </section>
-                            <section className='update__details__input'>
-                                <h4>Plastic water bottle</h4>
-                                <p className='update__label'>reused</p>
-                                <p> 4 </p>
+                            <section className='diary__entry'>
+                                <section className='diary__entry__details'>
+                                    <h4>Plastic water bottle</h4>
+                                    <p className='diary__label'>reused</p>
+                                </section>
+                                <section className='diary__entry__quantity'>
+                                    <p> 4 </p>
+                                </section>
                             </section>
                         </section>
-                        <section className='update__contact'>
-                            <h2 className='update__contact__title'>My Goals</h2>
-                            <section className='update__contact__input'>
+                        <section className='diary__goals'>
+                            <h2 className='diary__goals__title'>My Goals</h2>
+                            <section className='diary__goals__input'>
                                 <UnstyledInputBasic />
                             </section>
-                            <section className='update__contact__input'>
+                            <section className='diary__goals__input'>
                                 <UnstyledInputBasic />
                             </section>
-                            <section className='update__contact__input'>
+                            <section className='diary__goals__input'>
                                 <UnstyledInputBasic />
                             </section>
-                            <section className='update__contact__input'>
+                            <section className='diary__goals__input'>
+                                <UnstyledInputBasic />
+                            </section>
+                            <section className='diary__goals__input'>
                                 <UnstyledInputBasic />
                             </section>
                         </section>
                     </article>
-                </div>
             </main>
     )
 }
