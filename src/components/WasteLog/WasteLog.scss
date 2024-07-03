@@ -11,15 +11,45 @@
     margin-bottom: 2rem;
     padding: 2rem;
     background-color: white;
-    border-radius: .25rem;
+    border-radius: .5rem;
+    box-shadow: 1px 3px 10px $cambridge-blue;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: .5rem;
+}
+
+.cta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: $green-tea;
+    width: 40%;
+    padding: .5rem;
+    border-radius: .5rem;
+
+    &__text {
+        font-size: 1rem;
+        color: $oxford-blue;
+        text-transform: uppercase;
+    }
 }
 
 .diary {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+
+    @include tablet {
+        flex-direction: row;
+    }
 
     &__label {
+        color: $charcoal;
         font-size: 0.6rem;
+        font-family: 'Raleway Semi Bold';
         text-transform: uppercase;
     }
 
@@ -27,12 +57,15 @@
         display: flex;
         flex-direction: column;
         padding: 1rem 1.5rem;
-        width: 50%;
         gap: 1rem;
+        margin-bottom: 1rem;
+
+        @include tablet {
+            width: 50%;
+            margin: 0;
+        }
 
         &__title {
-            padding-bottom: 1.5rem;
-            font-family: 'Raleway Semi Bold';
             color: $olivine;
         }
     }
@@ -58,6 +91,8 @@
 
     &__goals {
         @extend .diary__entries;
+        margin: 0;
+        border-top: 0.0625rem solid rgba(70, 83, 98, .35);
 
         @include tablet {
             padding: 0 1.5rem;
@@ -67,17 +102,15 @@
 
         &__title {
             @extend .diary__entries__title;
+            padding-bottom: .5rem;
             color: $cambridge-blue;
         }
 
         &__input {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
             padding-bottom: 1rem;
         }
     }
-}
-
-a:has(h1):visited {
-    color: $rich-black;
 }

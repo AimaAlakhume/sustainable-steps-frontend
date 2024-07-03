@@ -6,7 +6,17 @@ import AddIcon from '@mui/icons-material/Add';
 import { NavBar } from '../../components/NavBar/NavBar.jsx';
 import { DateCalendarServerRequest } from '../../components/Calendar/Calendar.jsx';
 import { WasteLog } from '../../components/WasteLog/WasteLog.jsx';
-import { Colorize } from '@mui/icons-material';
+
+const customColors = {
+    'oxford-blue': '#011936',
+    'rich-black': '#020D1A',
+    'charcoal': '#465362',
+    'camridge-blue': '#82A3A1',
+    'olivine': '#9FC490',
+    'green-tea': '#C0DFA1',
+    'vanilla': '#DEDCA0',
+    'off-white': '#f7f4f0'
+}
 
 export const WasteDiary = () => {
 
@@ -14,10 +24,7 @@ export const WasteDiary = () => {
         <>
             <NavBar />
             <div className='large-wrapper'>
-                <DateCalendarServerRequest />=
-                <AddIcon 
-                sx={{ color: '#9FC490' }}
-                />
+                <DateCalendarServerRequest />
                 <WasteLog />
             </div>
         </>

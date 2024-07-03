@@ -11,10 +11,6 @@ function getRandomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
 }
 
-/**
- * Mimic fetch with abort controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
- * ⚠️ No IE11 support
- */
 function fakeFetch(date, { signal }) {
     return new Promise((resolve, reject) => {
         const timeout = setTimeout(() => {
@@ -55,6 +51,17 @@ function ServerDay(props) {
             />
         </Badge>
     );
+}
+
+const customColors = {
+    'oxford-blue': '#011936',
+    'rich-black': '#020D1A',
+    'charcoal': '#465362',
+    'camridge-blue': '#82A3A1',
+    'olivine': '#9FC490',
+    'green-tea': '#C0DFA1',
+    'vanilla': '#DEDCA0',
+    'off-white': '#f7f4f0'
 }
 
 export const DateCalendarServerRequest = () => {
@@ -104,15 +111,16 @@ export const DateCalendarServerRequest = () => {
     }
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
             <DateCalendar
                 sx={{
-                    backgroundColor: '#DEDCA0',
+                    backgroundColor: customColors['vanilla'],
                     width: '90%',
                     borderRadius: '1.5rem',
-                    marginTop: '1.25rem',
+                    marginTop: '2rem',
                     border: 1,
-                    borderColor: 'grey.500'
+                    borderColor: 'grey.500',
+                    boxShadow: '1px 1px 10px #82A3A1',
                 }}
                 onChange={onChangeHandler}
                 defaultValue={initialValue}
