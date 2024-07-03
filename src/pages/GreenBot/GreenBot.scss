@@ -1,0 +1,25 @@
+.map-container {
+    // ... (your existing styles)
+
+    .marker {
+        position: absolute;
+        transform: translate(-50%, -100%); // Center the marker
+        cursor: pointer;
+
+        &.recycling {
+            color: green;
+        }
+
+        &.activism {
+            color: yellow;
+        }
+
+        &.resource {
+            color: blue;
+        }
+
+        .marker-content {
+            color: black;
+        }
+    }
+}

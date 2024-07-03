@@ -31,6 +31,14 @@
     padding: .5rem;
     border-radius: .5rem;
 
+    @include tablet {
+        width: 45%;
+    }
+
+    @include desktop {
+        width: 30%;
+    }
+
     &__text {
         font-size: 1rem;
         color: $oxford-blue;
@@ -97,6 +105,7 @@
         @include tablet {
             padding: 0 1.5rem;
             margin: 1rem 0;
+            border-top: 0;
             border-left: 0.0625rem solid rgba(70, 83, 98, .35);
         }
 
