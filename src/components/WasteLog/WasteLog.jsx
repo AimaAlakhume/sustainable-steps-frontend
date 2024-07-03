@@ -1,9 +1,13 @@
 import './WasteLog.scss';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import { UnstyledInputBasic } from '../InputBox/InputBox';
 import Checkbox from '@mui/material/Checkbox';
+import PlantModal from '../PlantModal/PlantModal';
+
+const baseUrl = 'http://localhost:8080/entries';
 
 const customColors = {
     'oxford-blue': '#011936',
@@ -14,6 +18,15 @@ const customColors = {
     'green-tea': '#C0DFA1',
     'vanilla': '#DEDCA0',
     'off-white': '#f7f4f0'
+}
+
+// let navigate = useNavigate();
+
+const handleChange = () => {
+    return (
+        <PlantModal />
+    )
+    // navigate('/garden');
 }
 
 export const WasteLog = () => {
@@ -72,6 +85,7 @@ export const WasteLog = () => {
                     <section className='diary__goals__input'>
                         <UnstyledInputBasic />
                         <Checkbox
+                        onChange={handleChange}
                         sx={{
                             color: '#DAE2ED',
                             '&.Mui-checked': {
@@ -82,19 +96,51 @@ export const WasteLog = () => {
                     </section>
                     <section className='diary__goals__input'>
                         <UnstyledInputBasic />
-                        <Checkbox />
+                        <Checkbox
+                        onChange={handleChange}
+                        sx={{
+                            color: '#DAE2ED',
+                            '&.Mui-checked': {
+                                color: '#9FC490',
+                            }
+                        }}
+                        />
                     </section>
                     <section className='diary__goals__input'>
                         <UnstyledInputBasic />
-                        <Checkbox />
+                        <Checkbox
+                        onChange={handleChange}
+                        sx={{
+                            color: '#DAE2ED',
+                            '&.Mui-checked': {
+                                color: '#9FC490',
+                            }
+                        }}
+                        />
                     </section>
                     <section className='diary__goals__input'>
                         <UnstyledInputBasic />
-                        <Checkbox />
+                        <Checkbox
+                        onChange={handleChange}
+                        sx={{
+                            color: '#DAE2ED',
+                            '&.Mui-checked': {
+                                color: '#9FC490',
+                            }
+                        }}
+                        />
                     </section>
                     <section className='diary__goals__input'>
                         <UnstyledInputBasic />
-                        <Checkbox />
+                        <Checkbox
+                        onChange={handleChange}
+                        sx={{
+                            color: '#DAE2ED',
+                            '&.Mui-checked': {
+                                color: '#9FC490',
+                            }
+                        }}
+                        />
                     </section>
                 </section>
             </article>

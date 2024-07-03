@@ -5,7 +5,8 @@
 @use '../../styles/partials/variables' as *;
 
 .nav {
-    padding: 1rem 1rem 0;
+    padding: 1rem 1rem .5rem;
+    background-color: $cambridge-blue;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -14,6 +15,14 @@
     gap: 1rem;
 }
 
-a:visited {
-    color: $rich-black;
+a {
+    color: $white !important;
+
+    &.active {
+        color: $rich-black !important;
+    }
+
+    &:visited {
+        color: $rich-black;
+    }
 }
