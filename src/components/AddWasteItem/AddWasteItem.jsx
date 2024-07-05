@@ -1,7 +1,6 @@
 import './AddWasteItem.scss';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { FormControl, useFormControlContext } from '@mui/base/FormControl';
 import { Input, inputClasses } from '@mui/base/Input';
 import { styled } from '@mui/system';
@@ -11,81 +10,125 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { customColours } from '../../utils/CustomColours/CustomColours';
+import { IconButton } from '@mui/material';
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import dayjs from 'dayjs';
+
+const baseUrl = 'http://localhost:8080';
 
 export const AddWasteItem = () => {
+    const [item, setItem] = useState('');
+    const [quantity, setQuantity] = useState('');
+    const [category, setCategory] = useState('');
+    const [action, setAction] = useState('');
+
+    const currentDate = dayjs();
+
+    const handleSubmit = async () => {
+        try {
+            const res = await axios.post(`${baseUrl}/entries`, {
+                item: item,
+                quantity: quantity,
+                category: category,
+                action_taken: action,
+                date: currentDate.format('YYYY-MM-DD')
+            });
+
+            console.log("Entry added:", res.data);
+            setItem('');
+            setQuantity('');
+            setCategory('');
+            setAction('');
+        } catch (error) {
+            console.error("Error adding entry:", error);
+        }
+    };
+
     return (
         <section className='main-wrap'>
-            <FormControl defaultValue="" required>
-                <Label sx={{ 
-                    fontWeight: '600',
-                    fontSize: '.75rem',
-                    textTransform: 'uppercase'
-                }}>item</Label>
-                <StyledInput />
-                <HelperText />
-                <Label sx={{
-                    fontWeight: '600',
-                    fontSize: '.75rem',
-                    textTransform: 'uppercase'
-                }}>quantity</Label>
-                <StyledInput />
-                <HelperText />
-            </FormControl>
-            <div className='dropdowns'>
-                <Box sx={{ minWidth: 120 }}>
-                    <FormControl fullWidth>
-                        <InputLabel id="category-label"                        
-                        sx={{ 
-                            margin: '.5rem 0',
-                            textTransform: 'uppercase',
-                            fontSize: '.75rem',
-                            fontFamily: 'Playpen Sans',
-                            fontWeight: '600',
-                            color: customColours['rich-black']
-                        }}>category</InputLabel>
-                        <Select
-                            labelId="category-label"
-                            id="category"
-                            // value={age}
-                            label="Age"
-                            // onChange={handleChange}
-                        >
-                            <MenuItem value={'metal'}>metal</MenuItem>
-                            <MenuItem value={'plastic'}>plastic</MenuItem>
-                            <MenuItem value={'organic'}>organic</MenuItem>
-                            <MenuItem value={'e-waste'}>e-waste</MenuItem>
-                            <MenuItem value={'paper'}>paper</MenuItem>
-                            <MenuItem value={'glass'}>glass</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
-                <Box sx={{ minWidth: 120 }}>
-                    <FormControl fullWidth>
-                        <InputLabel id="action-label" 
-                        sx={{ 
-                            margin: '.5rem 0',
-                            textTransform: 'uppercase',
-                            fontSize: '.75rem',
-                            fontFamily: 'Playpen Sans',
-                            fontWeight: '600',
-                            color: customColours['rich-black']
-                        }}>action taken</InputLabel>
-                        <Select
-                            labelId="action-label"
-                            id="action"
-                            // value={age}
-                            label="Age"
-                            // onChange={handleChange}
-                        >
-                            <MenuItem value={'disposed'}>disposed</MenuItem>
-                            <MenuItem value={'composted'}>composted</MenuItem>
-                            <MenuItem value={'reused'}>reused</MenuItem>
-                            <MenuItem value={'recycled'}>recycled</MenuItem>
-                            <MenuItem value={'donated'}>donated</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
-            </div>
+            <form onSubmit={ handleSubmit }>
+                <FormControl defaultValue="" required>
+                    <Label sx={{
+                        fontWeight: '600',
+                        fontSize: '.75rem',
+                        textTransform: 'uppercase'
+                    }}>item</Label>
+                    <StyledInput
+                        value={item}
+                        onChange={(e) => setItem(e.target.value)}
+                    />
+                    <HelperText />
+                </FormControl>
+                <FormControl defaultValue="" required>
+                    <Label sx={{
+                        fontWeight: '600',
+                        fontSize: '.75rem',
+                        textTransform: 'uppercase'
+                    }}>quantity</Label>
+                    <StyledInput
+                        type="number"
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                    />
+                    <HelperText />
+                </FormControl>
+                <div className='dropdowns'>
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl>
+                            <InputLabel id="category-label"
+                                sx={{
+                                    margin: '.5rem 0',
+                                    textTransform: 'uppercase',
+                                    fontSize: '.75rem',
+                                    fontFamily: 'Playpen Sans',
+                                    fontWeight: '600',
+                                    color: customColours['rich-black']
+                                }}>category</InputLabel>
+                            <Select
+                                labelId="category-label"
+                                id="category"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            >
+                                <MenuItem value={'metal'}>metal</MenuItem>
+                                <MenuItem value={'plastic'}>plastic</MenuItem>
+                                <MenuItem value={'organic'}>organic</MenuItem>
+                                <MenuItem value={'e-waste'}>e-waste</MenuItem>
+                                <MenuItem value={'paper'}>paper</MenuItem>
+                                <MenuItem value={'glass'}>glass</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
+                    <Box sx={{ minWidth: 120 }}>
+                        <FormControl>
+                            <InputLabel id="action-label"
+                                sx={{
+                                    margin: '.5rem 0',
+                                    textTransform: 'uppercase',
+                                    fontSize: '.75rem',
+                                    fontFamily: 'Playpen Sans',
+                                    fontWeight: '600',
+                                    color: customColours['rich-black']
+                                }}>action taken</InputLabel>
+                            <Select
+                                labelId="action-label"
+                                id="action"
+                                value={action}
+                                onChange={(e) => setAction(e.target.value)}
+                            >
+                                <MenuItem value={'disposed'}>disposed</MenuItem>
+                                <MenuItem value={'composted'}>composted</MenuItem>
+                                <MenuItem value={'reused'}>reused</MenuItem>
+                                <MenuItem value={'recycled'}>recycled</MenuItem>
+                                <MenuItem value={'donated'}>donated</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
+                    <IconButton type="submit">
+                        <SendRoundedIcon />
+                    </IconButton>
+                </div>
+            </form>
         </section>
     );
 }
@@ -175,15 +218,6 @@ const HelperText = styled((props) => {
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.875rem;
 `;
-
-const blue = {
-    100: '#DAECFF',
-    200: '#b6daff',
-    400: '#3399FF',
-    500: '#007FFF',
-    600: '#0072E5',
-    900: '#003A75',
-};
 
 const grey = {
     50: '#F3F6F9',

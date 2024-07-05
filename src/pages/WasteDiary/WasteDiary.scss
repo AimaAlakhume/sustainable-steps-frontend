@@ -60,8 +60,12 @@
 
         @include tablet {
             width: 8rem;
-            top: 10%;
-            left: 40%;
+            top: 8%;
+            left: 50%;
+        }
+
+        @include tablet {
+            left: 37%;
         }
     }
 

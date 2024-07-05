@@ -1,8 +1,5 @@
 import './WasteDiary.scss';
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import AddIcon from '@mui/icons-material/Add';
+import React, { useState } from 'react';
 import { NavBar } from '../../components/NavBar/NavBar.jsx';
 import { DateCalendarServerRequest } from '../../components/Calendar/Calendar.jsx';
 import { WasteLog } from '../../components/WasteLog/WasteLog.jsx';
@@ -15,8 +12,15 @@ import goGreenDoodle from '../../assets/doodles/go_green-doodle.svg';
 import grassDoodle from '../../assets/doodles/grass-doodle.svg';
 import flowerDoodle from '../../assets/doodles/flower-doodle.svg';
 import sunDoodle from '../../assets/doodles/sun-doodle.svg';
+import dayjs from 'dayjs';
 
 export const WasteDiary = () => {
+
+    const [selectedDate, setSelectedDate] = useState(dayjs());
+
+    const handleDateChange = (newDate) => {
+        setSelectedDate(dayjs(newDate));
+    };
 
     return (
         <>
@@ -31,11 +35,11 @@ export const WasteDiary = () => {
                 <img src={sunDoodle} className='doodle doodle--sun' />
                 <section className='top-section'>
                     <div className='calendar-wrapper'>
-                        <DateCalendarServerRequest />
+                        <DateCalendarServerRequest onDateChange={handleDateChange} />
                     </div>
                     <AddWasteItem />
                 </section>
-                <WasteLog />
+                <WasteLog selectedDate={selectedDate} />
             </main>
             <BottomNav />
         </>
