@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Input as BaseInput } from '@mui/base/Input';
 import { styled } from '@mui/system';
+import { customColours } from '../../utils/CustomColours/CustomColours';
 
 const Input = React.forwardRef(function CustomInput(props, ref) {
   return <BaseInput slots={{ input: InputElement }} {...props} ref={ref} />;
@@ -8,17 +9,6 @@ const Input = React.forwardRef(function CustomInput(props, ref) {
 
 export const UnstyledInputBasic = () => {
   return <Input aria-label="Demo input" placeholder="Set a waste goal" />;
-}
-
-const customColors = {
-  'oxford-blue': '#011936',
-  'rich-black': '#020D1A',
-  'charcoal': '#465362',
-  'camridge-blue': '#82A3A1',
-  'olivine': '#9FC490',
-  'green-tea': '#C0DFA1',
-  'vanilla': '#DEDCA0',
-  'off-white': '#f7f4f0'
 }
 
 const blue = {
@@ -66,7 +56,7 @@ const InputElement = styled('input')(
   }
 
   &::placeholder {
-    color: ${customColors['charcoal']};
+    color: ${customColours['charcoal']};
   }
 `,
 );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {GardenGrid} from '../../components/GardenGrid/GardenGrid';
 import {Plant} from '../../components/Plant/Plant';
 import { NavBar } from '../../components/NavBar/NavBar';
+import { BottomNav } from '../../components/BottomNav/BottomNav';
 
 export const TheGarden = () => {
     const [plants, setPlants] = useState([]);
@@ -36,6 +37,7 @@ export const TheGarden = () => {
                 </div>
                 <GardenGrid plants={plants} />
             </div>
+            <BottomNav />
         </main>
     );
 }

@@ -6,7 +6,7 @@
 
 .nav {
     padding: 1rem 1rem .5rem;
-    background-color: $cambridge-blue;
+    // background-color: $olivine;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -16,8 +16,6 @@
 }
 
 a {
-    color: $white !important;
-
     &.active {
         color: $rich-black !important;
     }

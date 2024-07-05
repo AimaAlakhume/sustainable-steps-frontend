@@ -12,21 +12,14 @@
     padding: 2rem;
     background-color: white;
     border-radius: .5rem;
-    box-shadow: 1px 3px 10px $cambridge-blue;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: .5rem;
+    box-shadow: 1px 3px 7px $green-6;
 }
 
 .cta {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: $green-tea;
+    background-color: $green-2;
     width: 40%;
     padding: .5rem;
     border-radius: .5rem;
@@ -41,7 +34,6 @@
 
     &__text {
         font-size: 1rem;
-        color: $oxford-blue;
         text-transform: uppercase;
     }
 }
@@ -55,9 +47,10 @@
     }
 
     &__label {
-        color: $charcoal;
+        color: $green-1;
         font-size: 0.6rem;
-        font-family: 'Raleway Semi Bold';
+        font-family: 'Playpen Sans';
+        font-weight: 500;
         text-transform: uppercase;
     }
 
@@ -74,7 +67,7 @@
         }
 
         &__title {
-            color: $olivine;
+            color: $green-4;
         }
     }
 
@@ -112,7 +105,7 @@
         &__title {
             @extend .diary__entries__title;
             padding-bottom: .5rem;
-            color: $cambridge-blue;
+            color: $green-5;
         }
 
         &__input {

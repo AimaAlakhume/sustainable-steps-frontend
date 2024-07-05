@@ -5,7 +5,105 @@
 @use '../../styles/partials/typography' as *;
 
 .large-wrapper {
+    background-size: 2.5rem 40px;
+    background-image: radial-gradient(circle, #000000 1px, rgba(0, 0, 0, 0) 1px);
     display: flex;
     flex-direction: column;
+    padding: 2rem;
     gap: 2rem;
+}
+
+.top-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+    @include tablet {
+        flex-direction: row;
+    }
+}
+
+.calendar-wrapper {
+    margin-bottom: 1.5rem;
+
+    @include tablet {
+        margin: 0;
+        padding-left: 2rem;
+    }
+
+    @include desktop {
+        padding-left: 8rem;
+    }
+}
+
+.doodle {
+    position: absolute;
+    height: auto;
+    z-Index: 0;
+
+    &--earth {
+        width: 10rem;
+        top: 50%;
+        left: -5%;
+
+        @include tablet {
+            left: 0%;
+        }
+    }
+
+    &--emphasis {
+        width: 3.5rem;
+        top: 77%;
+        left: 83%;
+
+        @include tablet {
+            width: 8rem;
+            top: 10%;
+            left: 40%;
+        }
+    }
+
+    &--scribble {
+        width: 10rem;
+        top: 35%;
+        left: 85%;
+
+        @include tablet {
+            width: 15rem;
+            left: 90%;
+        }
+    }
+
+    &--arrow {
+        width: 10rem;
+        top: 5%;
+    }
+
+    &--grass {
+        width: 4rem;
+        top: 300%;
+        left: 80%;
+
+        @include tablet {
+            top: 175%;
+        }
+    }
+
+    &--flower {
+        width: 2.5rem;
+        top: 135%;
+    }
+
+    &--sun {
+        width: 3.5rem;
+        top: 200%;
+        left: 87%;
+
+        @include tablet {
+            top: 80%;
+            left: 80%;
+        }
+    }
 }

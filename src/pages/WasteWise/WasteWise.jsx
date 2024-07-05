@@ -9,6 +9,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import { NavBar } from '../../components/NavBar/NavBar';
+import { BottomNav } from '../../components/BottomNav/BottomNav';
+import { customColours } from '../../utils/CustomColours/CustomColours';
 
 const baseUrl = 'http://localhost:8080/guide';
 
@@ -41,16 +43,6 @@ export const WasteWise = () => {
         fetchData();
     }, []);
 
-    const customColors = {
-        'oxford-blue': '#011936',
-        'rich-black': '#020D1A',
-        'charcoal': '#465362',
-        'camridge-blue': '#82A3A1',
-        'olivine': '#9FC490',
-        'green-tea': '#C0DFA1',
-        'vanilla': '#DEDCA0',
-        'off-white': '#f7f4f0'
-    }
 
     return (
         <>
@@ -61,38 +53,38 @@ export const WasteWise = () => {
                         <TableRow>
                             <TableCell
                                 sx={{
-                                    color: customColors['olivine'],
-                                    fontFamily: 'Raleway Bold',
+                                    color: customColours['green-1'],
+                                    fontFamily: 'Playpen Sans',
                                     fontSize: '1.25rem'
                                 }}>Material</TableCell>
                             <TableCell align="left"
                                 sx={{
-                                    color: customColors['olivine'],
-                                    fontFamily: 'Raleway Bold',
+                                    color: customColours['green-1'],
+                                    fontFamily: 'Playpen Sans',
                                     fontSize: '1.25rem'
                                 }}>Recyclable?</TableCell>
                             <TableCell align="left"
                                 sx={{
-                                    color: customColors['olivine'],
-                                    fontFamily: 'Raleway Bold',
+                                    color: customColours['green-1'],
+                                    fontFamily: 'Playpen Sans',
                                     fontSize: '1.25rem'
                                 }}>Bin</TableCell>
                             <TableCell align="left"
                                 sx={{
-                                    color: customColors['olivine'],
-                                    fontFamily: 'Raleway Bold',
+                                    color: customColours['green-1'],
+                                    fontFamily: 'Playpen Sans',
                                     fontSize: '1.25rem'
                                 }}>Examples</TableCell>
                             <TableCell align="left"
                                 sx={{
-                                    color: customColors['olivine'],
-                                    fontFamily: 'Raleway Bold',
+                                    color: customColours['green-1'],
+                                    fontFamily: 'Playpen Sans',
                                     fontSize: '1.25rem'
                                 }}>Exceptions</TableCell>
                             <TableCell align="left"
                                 sx={{
-                                    color: customColors['olivine'],
-                                    fontFamily: 'Raleway Bold',
+                                    color: customColours['green-1'],
+                                    fontFamily: 'Playpen Sans',
                                     fontSize: '1.25rem'
                                 }}>Tips</TableCell>
                         </TableRow>
@@ -104,34 +96,53 @@ export const WasteWise = () => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row" sx={{
-                                    color: customColors['charcoal'],
-                                    fontFamily: 'Raleway Bold'
+                                    color: customColours['charcoal'],
+                                    fontFamily: 'Playpen Sans'
                                 }}>{row.material}</TableCell>
                                 <TableCell align="left" sx={{
-                                    color: customColors['charcoal'],
-                                    fontFamily: 'Raleway Semi Bold'
+                                    color: customColours['charcoal'],
+                                    fontFamily: 'Playpen Sans'
                                 }}>{row.isRecyclable}</TableCell>
                                 <TableCell align="left" sx={{
-                                    color: customColors['charcoal'],
-                                    fontFamily: 'Raleway Semi Bold'
+                                    color: customColours['charcoal'],
+                                    fontFamily: 'Playpen Sans'
                                 }}>{row.bin}</TableCell>
                                 <TableCell align="left" sx={{
-                                    color: customColors['charcoal'],
-                                    fontFamily: 'Raleway Semi Bold'
+                                    color: customColours['charcoal'],
+                                    fontFamily: 'Playpen Sans'
                                 }}>{row.examples}</TableCell>
                                 <TableCell align="left" sx={{
-                                    color: customColors['charcoal'],
-                                    fontFamily: 'Raleway Semi Bold'
+                                    color: customColours['charcoal'],
+                                    fontFamily: 'Playpen Sans'
                                 }}>{row.exceptions}</TableCell>
                                 <TableCell align="left" sx={{
-                                    color: customColors['charcoal'],
-                                    fontFamily: 'Raleway Semi Bold'
+                                    color: customColours['charcoal'],
+                                    fontFamily: 'Playpen Sans'
                                 }}>{row.tips}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
+            <BottomNav />
         </>
     );
 }
+
+
+// drag and drop
+// water bucket icon
+// quiz
+// dnd react - venn
+// right below the game, have an animation that shows progres. a progress bar would be good
+// maybe have the plants grow
+// streak-based
+// only have a few plant images
+// 
+
+// a grid of untapped plots then have them click on a plot
+// give each plant a timestamp
+
+// drag and drop sandbox (venn & ruth)
+
+// talk to sean

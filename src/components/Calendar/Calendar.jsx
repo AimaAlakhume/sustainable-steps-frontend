@@ -6,6 +6,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { PickersDay } from "@mui/x-date-pickers/PickersDay";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { DayCalendarSkeleton } from "@mui/x-date-pickers/DayCalendarSkeleton";
+import { customColours } from '../../utils/CustomColours/CustomColours';
 
 function getRandomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
@@ -51,17 +52,6 @@ function ServerDay(props) {
             />
         </Badge>
     );
-}
-
-const customColors = {
-    'oxford-blue': '#011936',
-    'rich-black': '#020D1A',
-    'charcoal': '#465362',
-    'camridge-blue': '#82A3A1',
-    'olivine': '#9FC490',
-    'green-tea': '#C0DFA1',
-    'vanilla': '#DEDCA0',
-    'off-white': '#f7f4f0'
 }
 
 export const DateCalendarServerRequest = () => {
@@ -114,13 +104,10 @@ export const DateCalendarServerRequest = () => {
         <LocalizationProvider dateAdapter={AdapterDayjs} >
             <DateCalendar
                 sx={{
-                    backgroundColor: customColors['vanilla'],
-                    width: '90%',
+                    backgroundColor: customColours['off-white'],
                     borderRadius: '1.5rem',
                     marginTop: '2rem',
-                    border: 1,
-                    borderColor: 'grey.500',
-                    boxShadow: '1px 1px 10px #82A3A1',
+                    boxShadow: '1px 1px 3px #82A3A1'
                 }}
                 onChange={onChangeHandler}
                 defaultValue={initialValue}
