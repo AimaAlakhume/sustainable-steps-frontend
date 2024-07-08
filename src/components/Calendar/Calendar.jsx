@@ -87,8 +87,12 @@ export const DateCalendarServerRequest = ({ onDateChange }) => {
                 renderLoading={() => <DayCalendarSkeleton />}
                 slots={{ day: ServerDay }}
                 slotProps={{
-                    day: {
-                        hasEntry: (day) => highlightedDays.includes(day.date()),
+                    day: (params) => {
+                        const dayOfMonth = dayjs(params.day).date();
+                        return {
+                            hasEntry: highlightedDays.includes(dayOfMonth), 
+                            outsideCurrentMonth: params.outsideCurrentMonth, 
+                        };
                     },
                 }}
             />
