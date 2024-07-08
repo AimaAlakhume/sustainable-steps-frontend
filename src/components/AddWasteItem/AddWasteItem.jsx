@@ -47,19 +47,18 @@ export const AddWasteItem = () => {
     return (
         <section className='main-wrap'>
             <form onSubmit={ handleSubmit }>
-                <FormControl defaultValue="" required>
+                <FormControl value={item} defaultValue="" required>
                     <Label sx={{
                         fontWeight: '600',
                         fontSize: '.75rem',
                         textTransform: 'uppercase'
                     }}>item</Label>
                     <StyledInput
-                        value={item}
                         onChange={(e) => setItem(e.target.value)}
                     />
                     <HelperText />
                 </FormControl>
-                <FormControl defaultValue="" required>
+                <FormControl value={quantity} defaultValue="" required>
                     <Label sx={{
                         fontWeight: '600',
                         fontSize: '.75rem',
@@ -67,7 +66,6 @@ export const AddWasteItem = () => {
                     }}>quantity</Label>
                     <StyledInput
                         type="number"
-                        value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
                     />
                     <HelperText />

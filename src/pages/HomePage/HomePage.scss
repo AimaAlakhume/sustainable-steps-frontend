@@ -9,7 +9,7 @@
     width: 100vw;
     margin: 0;
     font-family: 'Playpen Sans', Arial, Helvetica, sans-serif;
-    background-image: url("../../assets/backgrounds/planet-homepage.jpg");
+    background-image: url("../../assets/backgrounds/homepage-bg.svg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -19,8 +19,9 @@
 }
 
 .logo {
-    width: 16rem;
+    width: 12rem;
     height: auto;
+    margin-left: 1rem;
 }
 
 .circle {
