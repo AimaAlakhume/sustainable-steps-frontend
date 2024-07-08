@@ -6,7 +6,7 @@ import { TheGarden } from './pages/TheGarden/TheGarden';
 import { GreenBot } from './pages/GreenBot/GreenBot';
 import { WasteWise } from './pages/WasteWise/WasteWise';
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>

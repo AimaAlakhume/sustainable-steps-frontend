@@ -15,7 +15,6 @@ export const TheGarden = () => {
         <main>
             <NavBar />
             <div>
-                {/* WasteDiaryConnection (now integrated) */}
                 <div>
                     <label>
                         <input
