@@ -1,99 +1,52 @@
-import React, { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
-import { NavBar } from '../../components/NavBar/NavBar.jsx';
-import { BottomNav } from '../../components/BottomNav/BottomNav.jsx';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import soilImage from '../../assets/images/soil-plot.svg';
+import plantImage from '../../assets/images/flowers/blue-flower.png'; // Path to your plant image
+import './TheGarden.scss';
 
 export const TheGarden = () => {
-    const sceneRef = useRef(null);
-    const [plantModel, setPlantModel] = useState(null);
-    const [plots] = useState([
-        { position: new THREE.Vector3(-2, 0, 0), occupied: false },
-        { position: new THREE.Vector3(0, 0, 0), occupied: false },
-        { position: new THREE.Vector3(2, 0, 0), occupied: false }
-    ]);
+    const [availablePlants, setAvailablePlants] = useState(0);
+    const [gridState, setGridState] = useState([]);
 
     useEffect(() => {
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        sceneRef.current.appendChild(renderer.domElement);
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/goals');
+                const completedGoals = response.data.filter(goal => goal.isComplete);
+                setAvailablePlants(completedGoals.length);
+                setGridState(Array(24).fill(false)); // Initialize grid state
 
-        scene.background = new THREE.Color(0x87CEEB);
-        camera.position.z = 5;
-
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-        scene.add(directionalLight);
-
-        const loader = new GLTFLoader();
-        loader.load('path/to/your/plant/model.gltf', (gltf) => {
-            gltf.scene.scale.set(0.1, 0.1, 0.1);
-            setPlantModel(gltf.scene);
-        });
-
-        plots.forEach(plot => {
-            const geometry = new THREE.BoxGeometry(0.8, 0.1, 0.8);
-            const material = new THREE.MeshBasicMaterial({ color: 0x654321 });
-            const soilPlot = new THREE.Mesh(geometry, material);
-            soilPlot.position.copy(plot.position);
-            scene.add(soilPlot);
-        });
-
-        const animate = () => {
-            requestAnimationFrame(animate);
-            renderer.render(scene, camera);
+                // Clear data (replace with actual delete logic)
+                for (const goal of completedGoals) {
+                    await axios.delete(`http://localhost:8080/goals/${goal.id}`);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
         };
-        animate();
 
-        return () => {
-            scene.remove(ambientLight);
-            scene.remove(directionalLight);
-            plots.forEach(plot => scene.remove(plot));
-            if (plantModel) scene.remove(plantModel);
-        };
-    }, []);
+        fetchData();
+    }, []); // Empty dependency array ensures this runs once on mount
 
-    const handleDrop = (e) => {
-        const droppedOnPlot = e.dropData;
-        if (droppedOnPlot && !droppedOnPlot.occupied) {
-            droppedOnPlot.occupied = true;
-            e.dragData.position.copy(droppedOnPlot.position);
+    const handleClick = (index) => {
+        if (availablePlants > 0) {
+            setAvailablePlants(availablePlants - 1);
+            setGridState(prevGrid => prevGrid.map((planted, i) => (i === index ? true : planted)));
         }
     };
 
     return (
-        <main>
-            <NavBar />
-            <div ref={sceneRef}>
-                <DragDropContainer>
-                    <div>
-                        {plantModel && (
-                            <DropTarget targetKey="plot" onHit={handleDrop} dragData={plantModel}>
-                                <primitive object={plantModel} />
-                            </DropTarget>
-                        )}
-                    </div>
-                </DragDropContainer>
-
-                {plots.map((plot, index) => (
-                    <DropTarget key={index} targetKey="plot" dropData={plot}>
-                        <div
-                            style={{
-                                position: 'absolute',
-                                left: `${plot.position.x * 100 + 50}%`,
-                                top: `${-plot.position.y * 100 + 50}%`,
-                                width: '10px', height: '10px',
-                                background: plot.occupied ? 'green' : 'brown'
-                            }}
-                        ></div>
-                    </DropTarget>
-                ))}
-            </div>
-            <BottomNav />
-        </main>
+        <div className="grid-container">
+            {gridState.map((planted, index) => (
+                <img
+                    key={index}
+                    src={planted ? plantImage : soilImage}
+                    alt={planted ? 'Planted plot' : 'Empty soil plot'}
+                    onClick={() => handleClick(index)}
+                    className={`soil-plot ${planted ? 'planted' : ''}`}
+                />
+            ))}
+        </div>
     );
-}
+};
+

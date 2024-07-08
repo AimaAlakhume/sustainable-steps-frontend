@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UnstyledInputBasic } from '../InputBox/InputBox';
 import Checkbox from '@mui/material/Checkbox';
-import PlantModal from '../PlantModal/PlantModal';
 import { customColours } from '../../utils/CustomColours/CustomColours';
 import dayjs from 'dayjs';
 
@@ -36,9 +35,6 @@ export const WasteLog = ({ selectedDate }) => {
         setTimeout(() => {
             navigate('/garden');
         }, 1000);
-        return (
-            <PlantModal />
-        )
     }
 
     return (

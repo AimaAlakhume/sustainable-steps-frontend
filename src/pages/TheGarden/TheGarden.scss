@@ -3,3 +3,26 @@
 @use '../../styles/partials/resets' as *;
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/variables' as *;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, .5fr); // 8 columns initially
+    gap: 20px; // Adjust spacing as needed
+    background-image: url('../../assets/backgrounds/garden-bg.svg');
+    width: 100vw;
+    background-size: cover;
+
+    @include tablet {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .soil-plot {
+        margin: 1rem;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .planted {
+        // Add styling for planted plots (optional)
+    }
+}
