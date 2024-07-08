@@ -94,6 +94,7 @@ export const AddWasteItem = () => {
                                 <MenuItem value={'e-waste'}>e-waste</MenuItem>
                                 <MenuItem value={'paper'}>paper</MenuItem>
                                 <MenuItem value={'glass'}>glass</MenuItem>
+                                <MenuItem value={'textile'}>textile</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
