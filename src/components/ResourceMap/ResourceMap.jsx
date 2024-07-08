@@ -4,7 +4,7 @@ import resourcesMarker from '../../assets/markers/resources-bubble.svg';
 import activismMarker from '../../assets/markers/activism-bubble.svg';
 import recyclingMarker from '../../assets/markers/recycling-bubble.svg';
 
-const apiKey = 'AIzaSyBuVbGaY5SkFzQzvyNlZiCZGpStHABRtlA';
+const apiKey = import.meta.env.VITE_APIKEY;
 
 const libraries = ['places'];
 const mapContainerStyle = {
