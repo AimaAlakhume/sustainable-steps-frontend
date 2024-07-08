@@ -4,7 +4,7 @@
 @use "resets" as *;
 
 html {
-    background-color: $white;
+    background-color: $off-white;
 }
 
 header {
@@ -15,31 +15,35 @@ body,
 *::placeholder,
 button {
     color: $rich-black;
-    font-family: "Raleway Light", Arial, Helvetica, sans-serif;
+    font-family: 'Playpen Sans', Arial, Helvetica, sans-serif;
 }
 
 h1 {
-    font-family: "Raleway Bold";
+    font-weight: 600;
     font-size: 1.75rem;
     line-height: 2.25rem;
 }
 
 h2 {
+    font-weight: 600;
     font-size: 1.25rem;
     line-height: 1.75rem;
 }
 
 h3 {
+    font-weight: 500;
     font-size: 0.813rem;
     line-height: 1.25rem;
 }
 
 h4 {
+    font-weight: 500;
     font-size: 0.6875rem;
     line-height: 1rem;
 }
 
 p {
+    font-weight: 400;
     font-size: 0.9375rem;
     line-height: 1.625rem;
 }

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect, useRef} from "react";
 import dayjs from "dayjs";
 import Badge from "@mui/material/Badge";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -6,15 +6,12 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { PickersDay } from "@mui/x-date-pickers/PickersDay";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { DayCalendarSkeleton } from "@mui/x-date-pickers/DayCalendarSkeleton";
+import { customColours } from '../../utils/CustomColours/CustomColours';
 
 function getRandomNumber(min, max) {
     return Math.round(Math.random() * (max - min) + min);
 }
 
-/**
- * Mimic fetch with abort controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
- * ⚠️ No IE11 support
- */
 function fakeFetch(date, { signal }) {
     return new Promise((resolve, reject) => {
         const timeout = setTimeout(() => {
@@ -57,10 +54,10 @@ function ServerDay(props) {
     );
 }
 
-export const DateCalendarServerRequest = () => {
-    const requestAbortController = React.useRef(null);
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
+export const DateCalendarServerRequest = ({ onDateChange }) => {
+    const requestAbortController = useRef(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [highlightedDays, setHighlightedDays] = useState([1, 2, 15]);
 
     const fetchHighlightedDays = (date) => {
         const controller = new AbortController();
@@ -81,7 +78,7 @@ export const DateCalendarServerRequest = () => {
         requestAbortController.current = controller;
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         fetchHighlightedDays(initialValue);
         // abort request on unmount
         return () => requestAbortController.current?.abort();
@@ -100,21 +97,22 @@ export const DateCalendarServerRequest = () => {
     };
 
     const onChangeHandler = (value) => {
-        console.log(value)
+        if (onDateChange) { 
+            onDateChange(value);
+        }
     }
 
+
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
             <DateCalendar
                 sx={{
-                    backgroundColor: '#DEDCA0',
-                    width: '90%',
+                    backgroundColor: customColours['off-white'],
                     borderRadius: '1.5rem',
-                    marginTop: '1.25rem',
-                    border: 1,
-                    borderColor: 'grey.500'
+                    marginTop: '2rem',
+                    boxShadow: '1px 1px 3px #82A3A1'
                 }}
-                onChange={onChangeHandler}
+                onChange={onChangeHandler} 
                 defaultValue={initialValue}
                 loading={isLoading}
                 onMonthChange={handleMonthChange}

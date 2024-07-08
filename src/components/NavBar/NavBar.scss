@@ -5,11 +5,22 @@
 @use '../../styles/partials/variables' as *;
 
 .nav {
-    padding: 1rem 1rem 0;
+    padding: 1rem 1rem .5rem;
+    // background-color: $olivine;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: right;
     align-items: center;
     gap: 1rem;
+}
+
+a {
+    &.active {
+        color: $rich-black !important;
+    }
+
+    &:visited {
+        color: $rich-black;
+    }
 }
