@@ -93,3 +93,7 @@ https://excalidraw.com/#json=R8vDrsqZGr0hPflgLUfj9,UQQj3b_Dd6j_vnpUSw-wSw
 *   The type of plant earned corresponds to the type of goal completed, adding an element of personalization and surprise.
 *   Implement user login/sign-up using a secure authentication system.
 *   Consider using JSON Web Tokens (JWT) for authorization.
+
+### Server-Side
+
+Link to application server: https://github.com/AimaAlakhume/sustainable-steps-backend
