@@ -17,23 +17,29 @@
 
     &__grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr); // 8 columns initially
-        gap: 20px; // Adjust spacing as needed
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
         width: 100vw;
-        min-height: 100vh;
 
         @include tablet {
             grid-template-columns: repeat(5, 1fr);
         }
     }
+
+    &__obj {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
 }
 
 .soil-plot {
-    margin-top: 4rem;
-    width: 70%;
+    margin-top: 3rem;
+    width: 6rem;
     cursor: pointer;
 }
 
 .planted {
-    // Add styling for planted plots (optional)
+    width: 5rem;
 }

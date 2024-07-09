@@ -1,4 +1,3 @@
-import './WasteWise.scss';
 import React, { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -25,7 +24,6 @@ export const WasteWise = () => {
         const fetchData = async () => {
             try {
                 const res = await axios.get(baseUrl);
-                console.log(res.data);
                 const formattedRows = res.data.map(item => createData(
                     item.material,
                     item.isRecyclable,

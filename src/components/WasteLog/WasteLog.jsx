@@ -13,11 +13,12 @@ export const WasteLog = ({ selectedDate }) => {
     const navigate = useNavigate();
     const [entries, setEntries] = useState([]);
     const [error, setError] = useState(null);
+    const [goals, setGoals] = useState(Array(5).fill({ value: '', isChecked: false }));
 
     const getAllEntries = async () => {
         try {
             const res = await axios.get(
-                `${baseUrl}/entries`, 
+                `${baseUrl}/entries`,
                 { params: { date: selectedDate.format('YYYY-MM-DD') } }
             );
             setEntries(res.data);
@@ -31,19 +32,36 @@ export const WasteLog = ({ selectedDate }) => {
         getAllEntries();
     }, [selectedDate]);
 
-    const handleTick = () => {
-        setTimeout(() => {
-            navigate('/garden');
-        }, 1000);
-    }
+    const handleGoalChange = (index, newValue) => {
+        const updatedGoals = goals.map((goal, i) =>
+            i === index ? { ...goal, value: newValue } : goal
+        );
+        setGoals(updatedGoals);
+
+        if (updatedGoals.every(goal => goal.value)) {
+            setGoals([...updatedGoals, { value: '', isChecked: false }]);
+        }
+    };
+
+    const handleGoalCheck = (index) => {
+        const updatedGoals = goals.map((goal, i) => 
+            i === index ? { ...goal, isChecked: true } : goal
+        );
+
+        // Filter out the checked goal and ensure there are always at least 5 goals.
+        const remainingGoals = updatedGoals.filter(goal => !goal.isChecked);
+        const newGoals = remainingGoals.length < 5 ? [...remainingGoals, { value: '', isChecked: false }] : remainingGoals;
+
+        setGoals(newGoals);
+    };
 
     return (
         <main className='main'>
             <article className='diary'>
                 <section className='diary__entries'>
                     <h2 className='diary__entries__title'>
-                    {selectedDate.isSame(dayjs(), 'day')
-                            ? 'Today' 
+                        {selectedDate.isSame(dayjs(), 'day')
+                            ? 'Today'
                             : selectedDate.format('MMM D, YYYY')
                         }
                     </h2>
@@ -65,18 +83,25 @@ export const WasteLog = ({ selectedDate }) => {
                 </section>
                 <section className='diary__goals'>
                     <h2 className='diary__goals__title'>My Goals</h2>
-                    <section className='diary__goals__input'>
-                        <UnstyledInputBasic />
-                        <Checkbox
-                            onChange={handleTick}
-                            sx={{
-                                color: customColours['soft-grey'],
-                                '&.Mui-checked': {
-                                    color: customColours['green-2'],
-                                }
-                            }}
-                        />
-                    </section>
+                    {goals.map((goal, index) => (
+                        <section key={index} className='diary__goals__input'>
+                            <UnstyledInputBasic
+                                value={goal.value}
+                                onChange={(e) => handleGoalChange(index, e.target.value)}
+                                disabled={goal.isChecked}
+                            />
+                            <Checkbox
+                                checked={goal.isChecked}
+                                onChange={() => handleGoalCheck(index)}
+                                sx={{
+                                    color: customColours['soft-grey'],
+                                    '&.Mui-checked': {
+                                        color: customColours['green-2'],
+                                    },
+                                }}
+                            />
+                        </section>
+                    ))}
                 </section>
             </article>
         </main>

@@ -11,14 +11,6 @@ export const UnstyledInputBasic = () => {
   return <Input aria-label="Demo input" placeholder="Set a waste goal" />;
 }
 
-const blue = {
-  100: '#DAECFF',
-  200: '#80BFFF',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-};
-
 const grey = {
   50: '#F3F6F9',
   100: '#E5EAF2',
@@ -47,12 +39,12 @@ const InputElement = styled('input')(
   box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
 
   &:hover {
-    border-color: ${blue[400]};
+    border-color: ${customColours['green-2']};
   }
 
   &:focus {
-    border-color: ${blue[400]};
-    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? blue[600] : blue[200]};
+    border-color: ${customColours['green-2']};
+    box-shadow: 0 0 0 3px ${theme.palette.mode === 'dark' ? customColours['green-4'] : customColours['green-6']};
   }
 
   &::placeholder {

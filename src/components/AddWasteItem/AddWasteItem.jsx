@@ -34,7 +34,6 @@ export const AddWasteItem = () => {
                 date: currentDate.format('YYYY-MM-DD')
             });
 
-            console.log("Entry added:", res.data);
             setItem('');
             setQuantity('');
             setCategory('');
