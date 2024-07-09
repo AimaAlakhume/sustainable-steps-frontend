@@ -4,25 +4,36 @@
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/variables' as *;
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, .5fr); // 8 columns initially
-    gap: 20px; // Adjust spacing as needed
-    background-image: url('../../assets/backgrounds/garden-bg.svg');
-    width: 100vw;
-    background-size: cover;
 
-    @include tablet {
-        grid-template-columns: repeat(5, 1fr);
+.container {
+
+    &__main {
+        background-image: url('../../assets/backgrounds/garden-bg.svg');
+        width: 100vw;
+        min-height: 100vh;
+        background-size: cover;
+        padding: 2rem;
     }
 
-    .soil-plot {
-        margin: 1rem;
-        width: 100%;
-        cursor: pointer;
-    }
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); // 8 columns initially
+        gap: 20px; // Adjust spacing as needed
+        width: 100vw;
+        min-height: 100vh;
 
-    .planted {
-        // Add styling for planted plots (optional)
+        @include tablet {
+            grid-template-columns: repeat(5, 1fr);
+        }
     }
+}
+
+.soil-plot {
+    margin-top: 4rem;
+    width: 70%;
+    cursor: pointer;
+}
+
+.planted {
+    // Add styling for planted plots (optional)
 }

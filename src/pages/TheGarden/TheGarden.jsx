@@ -1,8 +1,13 @@
+import './TheGarden.scss';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import soilImage from '../../assets/images/soil-plot.svg';
 import plantImage from '../../assets/images/flowers/blue-flower.png'; // Path to your plant image
-import './TheGarden.scss';
+import { NavBar } from '../../components/NavBar/NavBar';
+import { BottomNav } from '../../components/BottomNav/BottomNav';
+
+const goalsUrl = 'http://localhost:8080/goals';
+const shedUrl = 'http://localhost:8080/shed';
 
 export const TheGarden = () => {
     const [availablePlants, setAvailablePlants] = useState(0);
@@ -11,14 +16,17 @@ export const TheGarden = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/goals');
-                const completedGoals = response.data.filter(goal => goal.isComplete);
+                const res = await axios.get(goalsUrl);
+                const completedGoals = res.data.filter(goal => goal.isComplete === true);
+                console.log(completedGoals);
                 setAvailablePlants(completedGoals.length);
                 setGridState(Array(24).fill(false)); // Initialize grid state
 
-                // Clear data (replace with actual delete logic)
                 for (const goal of completedGoals) {
-                    await axios.delete(`http://localhost:8080/goals/${goal.id}`);
+                    await axios.put(`${goalsUrl}/${goal.id}`, {
+                        ...goal,
+                        isComplete: 'deprecated'
+                    });
                 }
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -26,7 +34,7 @@ export const TheGarden = () => {
         };
 
         fetchData();
-    }, []); // Empty dependency array ensures this runs once on mount
+    }, []);
 
     const handleClick = (index) => {
         if (availablePlants > 0) {
@@ -36,17 +44,23 @@ export const TheGarden = () => {
     };
 
     return (
-        <div className="grid-container">
-            {gridState.map((planted, index) => (
-                <img
-                    key={index}
-                    src={planted ? plantImage : soilImage}
-                    alt={planted ? 'Planted plot' : 'Empty soil plot'}
-                    onClick={() => handleClick(index)}
-                    className={`soil-plot ${planted ? 'planted' : ''}`}
-                />
-            ))}
-        </div>
+        <>
+            <NavBar />
+            <main className='container__main'>
+                <div className="container__grid">
+                    {gridState.map((planted, index) => (
+                        <img
+                            key={index}
+                            src={planted ? plantImage : soilImage}
+                            alt={planted ? 'Planted plot' : 'Empty soil plot'}
+                            onClick={() => handleClick(index)}
+                            className={`soil-plot ${planted ? 'planted' : ''}`}
+                        />
+                    ))}
+                </div>
+            </main>
+            <BottomNav />
+        </>
     );
 };
 
