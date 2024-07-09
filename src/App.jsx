@@ -2,11 +2,11 @@ import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HomePage } from './pages/HomePage/HomePage';
 import { WasteDiary } from './pages/WasteDiary/WasteDiary';
-import { TheGarden } from './pages/TheGarden/TheGarden';
 import { GreenBot } from './pages/GreenBot/GreenBot';
 import { WasteWise } from './pages/WasteWise/WasteWise';
+import { TheGarden } from './pages/TheGarden/TheGarden';
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>

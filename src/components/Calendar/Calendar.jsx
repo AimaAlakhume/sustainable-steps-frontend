@@ -1,131 +1,88 @@
-import React, { useState, useEffect, useRef} from "react";
-import dayjs from "dayjs";
-import Badge from "@mui/material/Badge";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { PickersDay } from "@mui/x-date-pickers/PickersDay";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { DayCalendarSkeleton } from "@mui/x-date-pickers/DayCalendarSkeleton";
+import React, { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
+import Badge from '@mui/material/Badge';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { PickersDay } from '@mui/x-date-pickers/PickersDay';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 import { customColours } from '../../utils/CustomColours/CustomColours';
+import axios from 'axios';
 
-function getRandomNumber(min, max) {
-    return Math.round(Math.random() * (max - min) + min);
-}
-
-function fakeFetch(date, { signal }) {
-    return new Promise((resolve, reject) => {
-        const timeout = setTimeout(() => {
-            const daysInMonth = date.daysInMonth();
-            const daysToHighlight = [1, 2, 3].map(() =>
-                getRandomNumber(1, daysInMonth)
-            );
-
-            resolve({ daysToHighlight });
-        }, 500);
-
-        signal.onabort = () => {
-            clearTimeout(timeout);
-            reject(new DOMException("aborted", "AbortError"));
-        };
-    });
-}
-
+const baseUrl = 'http://localhost:8080';
 const initialValue = dayjs(new Date());
 
-function ServerDay(props) {
-    const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
-
-    const isSelected =
-        !props.outsideCurrentMonth &&
-        highlightedDays.indexOf(props.day.date()) >= 0;
-
+const ServerDay = (props) => {
+    const { hasEntry, day, outsideCurrentMonth, ...other } = props;
     return (
         <Badge
             key={props.day.toString()}
             overlap="circular"
-            badgeContent={isSelected ? "🌱" : undefined}
+            badgeContent={hasEntry ? "🌱" : undefined}
         >
-            <PickersDay
-                {...other}
-                outsideCurrentMonth={outsideCurrentMonth}
-                day={day}
-            />
+            <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
         </Badge>
     );
-}
+};
 
 export const DateCalendarServerRequest = ({ onDateChange }) => {
-    const requestAbortController = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [highlightedDays, setHighlightedDays] = useState([1, 2, 15]);
+    const [highlightedDays, setHighlightedDays] = useState({});
+    const [currentDate, setCurrentDate] = useState(initialValue);
 
-    const fetchHighlightedDays = (date) => {
-        const controller = new AbortController();
-        fakeFetch(date, {
-            signal: controller.signal
-        })
-            .then(({ daysToHighlight }) => {
-                setHighlightedDays(daysToHighlight);
-                setIsLoading(false);
-            })
-            .catch((error) => {
-                // ignore the error if it's caused by `controller.abort`
-                if (error.name !== "AbortError") {
-                    throw error;
-                }
+    const getEntries = async () => {
+        setIsLoading(true);
+        try {
+            const res = await axios.get(`${baseUrl}/entries`);
+            const entryData = res.data;
+            const daysWithEntries = {};
+            entryData.forEach(entry => {
+                const entryDate = dayjs(entry.date).format('YYYY-MM-DD');
+                daysWithEntries[entryDate] = true;
             });
-
-        requestAbortController.current = controller;
+            setHighlightedDays(daysWithEntries);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        } finally {
+            setIsLoading(false);
+        }
     };
-
     useEffect(() => {
-        fetchHighlightedDays(initialValue);
-        // abort request on unmount
-        return () => requestAbortController.current?.abort();
+        getEntries();
     }, []);
 
     const handleMonthChange = (date) => {
-        if (requestAbortController.current) {
-            // make sure that you are aborting useless requests
-            // because it is possible to switch between months pretty quickly
-            requestAbortController.current.abort();
-        }
-
-        setIsLoading(true);
-        setHighlightedDays([]);
-        fetchHighlightedDays(date);
+        setCurrentDate(date);
     };
 
     const onChangeHandler = (value) => {
-        if (onDateChange) { 
-            onDateChange(value);
-        }
-    }
-
-
+        onDateChange?.(value);
+    };
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs} >
-            <DateCalendar
-                sx={{
-                    backgroundColor: customColours['off-white'],
-                    borderRadius: '1.5rem',
-                    marginTop: '2rem',
-                    boxShadow: '1px 1px 3px #82A3A1'
-                }}
-                onChange={onChangeHandler} 
-                defaultValue={initialValue}
-                loading={isLoading}
-                onMonthChange={handleMonthChange}
-                renderLoading={() => <DayCalendarSkeleton />}
-                slots={{
-                    day: ServerDay
-                }}
-                slotProps={{
-                    day: {
-                        highlightedDays
-                    }
-                }}
-            />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {isLoading ? (
+                <DayCalendarSkeleton />
+            ) : (
+                <DateCalendar
+                    sx={{
+                        backgroundColor: customColours['off-white'],
+                        borderRadius: '1.5rem',
+                        marginTop: '2rem',
+                        boxShadow: '1px 1px 3px #82A3A1'
+                    }}
+                    onChange={onChangeHandler}
+                    value={currentDate}
+                    onMonthChange={handleMonthChange}
+                    renderLoading={() => <DayCalendarSkeleton />}
+                    slots={{ day: ServerDay }}
+                    slotProps={{
+                        day: (params) => ({
+                            hasEntry: !!highlightedDays[dayjs(params.day).format('YYYY-MM-DD')],
+                            outsideCurrentMonth: params.outsideCurrentMonth,
+                        }),
+                    }}
+                />
+            )}
         </LocalizationProvider>
     );
-}
+};

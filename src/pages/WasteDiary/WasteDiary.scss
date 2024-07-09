@@ -87,11 +87,12 @@
 
     &--grass {
         width: 4rem;
-        top: 300%;
-        left: 80%;
+        top: 220%;
+        left: 5%;
 
         @include tablet {
             top: 175%;
+            left: 80%;
         }
     }
 

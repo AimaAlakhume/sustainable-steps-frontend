@@ -1,9 +1,9 @@
 import './PlantModal.scss';
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import plantNotifierIcon from '../../assets/images/plant-notifier.png';
 
 const style = {
     position: 'absolute',
@@ -12,37 +12,38 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 400,
     bgcolor: 'background.paper',
-    border: '1px solid #3c4043',
-    borderRadius: '1rem',
+    border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    borderRadius: '3rem'
 };
 
-const PlantModal = () => {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+const titleStyle = {
+    textAlign: 'center',
+    fontFamily: 'Playpen Sans',
+    fontWeight: 600
+}
+
+export const PlantModal = ({ open, close }) => {
 
     return (
         <div>
-            <Button onClick={handleOpen} className="learn-more-btn">Learn more</Button>
             <Modal
                 open={open}
-                onClose={handleClose}
+                onClose={close}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        AI Overview
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        AI Overviews in Google Search provide quick summaries of information from various sources, aimed at making it easier to understand topics quickly. It's important to note that this feature uses experimental AI technology, which Google continues to refine based on user feedback.
-                    </Typography>
+                    <h2 className='title'> your plant shed </h2>
+                    <div className='container'>
+                        <img src={plantNotifierIcon} className='notifier__icon' />
+                        <p className='notifier'>
+                            You have <span className='highlighted'>4</span> plants ready to be placed in your garden!
+                        </p>
+                    </div>
                 </Box>
             </Modal>
         </div>
     );
 }
-
-export default PlantModal;

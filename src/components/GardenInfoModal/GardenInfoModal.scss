@@ -1,0 +1,23 @@
+@use '../../styles/partials/resets' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography' as *;
+
+.garden-info {
+    text-align: center;
+
+    &__title {
+        @extend .garden-info;
+    }
+
+    &__text {
+        @extend .garden-info;
+        padding: 1rem;
+        line-height: 1.25rem;
+
+        &--emphasised {
+            color: grey;
+        }
+    }
+}

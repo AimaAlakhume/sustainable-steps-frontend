@@ -34,7 +34,6 @@ export const AddWasteItem = () => {
                 date: currentDate.format('YYYY-MM-DD')
             });
 
-            console.log("Entry added:", res.data);
             setItem('');
             setQuantity('');
             setCategory('');
@@ -47,19 +46,18 @@ export const AddWasteItem = () => {
     return (
         <section className='main-wrap'>
             <form onSubmit={ handleSubmit }>
-                <FormControl defaultValue="" required>
+                <FormControl value={item} defaultValue="" required>
                     <Label sx={{
                         fontWeight: '600',
                         fontSize: '.75rem',
                         textTransform: 'uppercase'
                     }}>item</Label>
                     <StyledInput
-                        value={item}
                         onChange={(e) => setItem(e.target.value)}
                     />
                     <HelperText />
                 </FormControl>
-                <FormControl defaultValue="" required>
+                <FormControl value={quantity} defaultValue="" required>
                     <Label sx={{
                         fontWeight: '600',
                         fontSize: '.75rem',
@@ -67,7 +65,6 @@ export const AddWasteItem = () => {
                     }}>quantity</Label>
                     <StyledInput
                         type="number"
-                        value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
                     />
                     <HelperText />
@@ -96,6 +93,7 @@ export const AddWasteItem = () => {
                                 <MenuItem value={'e-waste'}>e-waste</MenuItem>
                                 <MenuItem value={'paper'}>paper</MenuItem>
                                 <MenuItem value={'glass'}>glass</MenuItem>
+                                <MenuItem value={'textile'}>textile</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>

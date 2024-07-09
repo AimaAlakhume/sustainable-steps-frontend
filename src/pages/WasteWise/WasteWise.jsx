@@ -1,4 +1,3 @@
-import './WasteWise.scss';
 import React, { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -25,10 +24,9 @@ export const WasteWise = () => {
         const fetchData = async () => {
             try {
                 const res = await axios.get(baseUrl);
-                console.log(res.data);
                 const formattedRows = res.data.map(item => createData(
                     item.material,
-                    item.isRecyclable ? "Yes" : "No",
+                    item.isRecyclable,
                     item.bin,
                     item.examples,
                     item.exceptions,
@@ -128,21 +126,3 @@ export const WasteWise = () => {
         </>
     );
 }
-
-
-// drag and drop
-// water bucket icon
-// quiz
-// dnd react - venn
-// right below the game, have an animation that shows progres. a progress bar would be good
-// maybe have the plants grow
-// streak-based
-// only have a few plant images
-// 
-
-// a grid of untapped plots then have them click on a plot
-// give each plant a timestamp
-
-// drag and drop sandbox (venn & ruth)
-
-// talk to sean
