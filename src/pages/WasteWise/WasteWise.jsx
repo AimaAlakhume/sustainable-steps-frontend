@@ -46,7 +46,7 @@ export const WasteWise = () => {
         <>
             <NavBar />
             <TableContainer component={Paper} sx={{ padding: '1rem' }}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <Table sx={{ minWidth: 650 }} aria-label='simple table'>
                     <TableHead>
                         <TableRow>
                             <TableCell
@@ -55,31 +55,31 @@ export const WasteWise = () => {
                                     fontFamily: 'Playpen Sans',
                                     fontSize: '1.25rem'
                                 }}>Material</TableCell>
-                            <TableCell align="left"
+                            <TableCell align='left'
                                 sx={{
                                     color: customColours['green-1'],
                                     fontFamily: 'Playpen Sans',
                                     fontSize: '1.25rem'
                                 }}>Recyclable?</TableCell>
-                            <TableCell align="left"
+                            <TableCell align='left'
                                 sx={{
                                     color: customColours['green-1'],
                                     fontFamily: 'Playpen Sans',
                                     fontSize: '1.25rem'
                                 }}>Bin</TableCell>
-                            <TableCell align="left"
+                            <TableCell align='left'
                                 sx={{
                                     color: customColours['green-1'],
                                     fontFamily: 'Playpen Sans',
                                     fontSize: '1.25rem'
                                 }}>Examples</TableCell>
-                            <TableCell align="left"
+                            <TableCell align='left'
                                 sx={{
                                     color: customColours['green-1'],
                                     fontFamily: 'Playpen Sans',
                                     fontSize: '1.25rem'
                                 }}>Exceptions</TableCell>
-                            <TableCell align="left"
+                            <TableCell align='left'
                                 sx={{
                                     color: customColours['green-1'],
                                     fontFamily: 'Playpen Sans',
@@ -93,27 +93,27 @@ export const WasteWise = () => {
                                 key={row.material}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell component="th" scope="row" sx={{
+                                <TableCell component='th' scope='row' sx={{
                                     color: customColours['charcoal'],
                                     fontFamily: 'Playpen Sans'
                                 }}>{row.material}</TableCell>
-                                <TableCell align="left" sx={{
+                                <TableCell align='left' sx={{
                                     color: customColours['charcoal'],
                                     fontFamily: 'Playpen Sans'
                                 }}>{row.isRecyclable}</TableCell>
-                                <TableCell align="left" sx={{
+                                <TableCell align='left' sx={{
                                     color: customColours['charcoal'],
                                     fontFamily: 'Playpen Sans'
                                 }}>{row.bin}</TableCell>
-                                <TableCell align="left" sx={{
+                                <TableCell align='left' sx={{
                                     color: customColours['charcoal'],
                                     fontFamily: 'Playpen Sans'
                                 }}>{row.examples}</TableCell>
-                                <TableCell align="left" sx={{
+                                <TableCell align='left' sx={{
                                     color: customColours['charcoal'],
                                     fontFamily: 'Playpen Sans'
                                 }}>{row.exceptions}</TableCell>
-                                <TableCell align="left" sx={{
+                                <TableCell align='left' sx={{
                                     color: customColours['charcoal'],
                                     fontFamily: 'Playpen Sans'
                                 }}>{row.tips}</TableCell>

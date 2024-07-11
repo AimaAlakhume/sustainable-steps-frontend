@@ -22,6 +22,8 @@ export const WasteDiary = () => {
         setSelectedDate(dayjs(newDate));
     };
 
+    console.log(selectedDate);
+
     return (
         <>
             <NavBar />

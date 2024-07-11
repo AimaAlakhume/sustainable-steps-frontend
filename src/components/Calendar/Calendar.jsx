@@ -17,8 +17,8 @@ const ServerDay = (props) => {
     return (
         <Badge
             key={props.day.toString()}
-            overlap="circular"
-            badgeContent={hasEntry ? "🌱" : undefined}
+            overlap='circular'
+            badgeContent={hasEntry ? '🌱' : undefined}
         >
             <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
         </Badge>

@@ -3,6 +3,7 @@ import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps
 import { NavBar } from '../../components/NavBar/NavBar';
 import { BottomNav } from '../../components/BottomNav/BottomNav';
 import { ResourceMap } from '../../components/ResourceMap/ResourceMap';
+import { GreenBotSpeedDial } from '../../components/GreenBotSpeedDial/GreenBotSpeedDial';
 
 export const GreenBot = () => {
 
@@ -11,6 +12,7 @@ export const GreenBot = () => {
             <NavBar />
             <ResourceMap />
             <BottomNav />
+            <GreenBotSpeedDial />
         </main>
     );
 };

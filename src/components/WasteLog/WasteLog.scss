@@ -15,104 +15,11 @@
     box-shadow: 1px 3px 7px $green-6;
 }
 
-.cta {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: $green-2;
-    width: 40%;
-    padding: .5rem;
-    border-radius: .5rem;
-
-    @include tablet {
-        width: 45%;
-    }
-
-    @include desktop {
-        width: 30%;
-    }
-
-    &__text {
-        font-size: 1rem;
-        text-transform: uppercase;
-    }
-}
-
 .diary {
     display: flex;
     flex-direction: column;
 
     @include tablet {
         flex-direction: row;
-    }
-
-    &__label {
-        color: $green-1;
-        font-size: 0.6rem;
-        font-family: 'Playpen Sans';
-        font-weight: 500;
-        text-transform: uppercase;
-    }
-
-    &__entries {
-        display: flex;
-        flex-direction: column;
-        padding: 1rem 1.5rem;
-        gap: 1rem;
-        margin-bottom: 1rem;
-
-        @include tablet {
-            width: 50%;
-            margin: 0;
-        }
-
-        &__title {
-            color: $green-4;
-        }
-    }
-
-    &__entry {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 1rem;
-        border: 0.0625rem solid #DAE2ED;
-        border-radius: 0.5rem;
-
-        &__details {
-            display: flex;
-            flex-direction: column;
-        }
-
-        &__quantity {
-            display: flex;
-            flex-direction: row;
-        }
-    }
-
-    &__goals {
-        @extend .diary__entries;
-        margin: 0;
-        border-top: 0.0625rem solid rgba(70, 83, 98, .35);
-
-        @include tablet {
-            padding: 0 1.5rem;
-            margin: 1rem 0;
-            border-top: 0;
-            border-left: 0.0625rem solid rgba(70, 83, 98, .35);
-        }
-
-        &__title {
-            @extend .diary__entries__title;
-            padding-bottom: .5rem;
-            color: $green-5;
-        }
-
-        &__input {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            padding-bottom: 1rem;
-        }
     }
 }
