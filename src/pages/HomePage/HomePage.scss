@@ -67,19 +67,19 @@
 
         @include tablet {
             top: 62%;
-            left: 24%
+            left: 20%
         }
     }
 
     &--garden {
         bottom: 60%;
-        left: 71%;
+        left: 73%;
         animation: orbit-reverse linear 3s infinite;
     }
 
     &--wastewise {
         bottom: 5%;
-        left: 65%;
+        left: 67%;
         animation: orbit-reverse linear 3s infinite;
     }
 }

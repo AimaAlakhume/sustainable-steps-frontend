@@ -1,7 +1,8 @@
+import './ResourceMap.scss';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { GoogleMap, useJsApiLoader, MarkerF, InfoWindowF } from '@react-google-maps/api';
-import resourcesMarker from '../../assets/markers/resources-bubble.svg';
+import educationMarker from '../../assets/markers/education-bubble.svg';
 import activismMarker from '../../assets/markers/activism-bubble.svg';
 import recyclingMarker from '../../assets/markers/recycling-bubble.svg';
 
@@ -66,13 +67,16 @@ export const ResourceMap = () => {
                         position={{ lat: Number(marker.lat), lng: Number(marker.lng) }}
                         onClick={() => handleActiveMarker(marker)}
                         icon={{
-                            url: marker.type === 'politics' ? activismMarker : marker.type === 'waste management' ? recyclingMarker : resourcesMarker,
+                            url: marker.type === 'politics' ? activismMarker : marker.type === 'waste management' ? recyclingMarker : educationMarker,
                             scaledSize: new window.google.maps.Size(40, 40)
                         }}
                     >
                         {activeMarker === marker && (
                             <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
-                                <div>{marker.location}</div>
+                                <div>
+                                    <h3 className='marker__location'>{marker.location}</h3>
+                                    <p className='marker__address'>{marker.address}</p>
+                                </div>
                             </InfoWindowF>
                         )}
                     </MarkerF>
