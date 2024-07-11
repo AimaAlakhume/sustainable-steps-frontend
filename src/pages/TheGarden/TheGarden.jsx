@@ -79,9 +79,9 @@ export const TheGarden = () => {
         <>
             <NavBar />
             <main className='container__main'>
-                <div className="container__grid">
+                <div className='container__grid'>
                     {gridState.map((plot, index) => (
-                        <div className="container__obj" key={index}>
+                        <div className='container__obj' key={index}>
                             <img
                                 key={index}
                                 src={plot.planted ? plot.image : soilImage}

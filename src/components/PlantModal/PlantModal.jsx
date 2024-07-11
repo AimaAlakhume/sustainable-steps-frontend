@@ -1,8 +1,11 @@
 import './PlantModal.scss';
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import plantNotifierIcon from '../../assets/images/plant-notifier.png';
+
+const baseUrl = 'http://localhost:8080';
 
 const style = {
     position: 'absolute',
@@ -16,28 +19,39 @@ const style = {
     borderRadius: '3rem'
 };
 
-const titleStyle = {
-    textAlign: 'center',
-    fontFamily: 'Playpen Sans',
-    fontWeight: 600
-}
-
 export const PlantModal = ({ open, close }) => {
+
+    const [plantAmount, setPlantAmount] = useState(0);
+
+    const getPlantAmount = async () => {
+        try {
+            const res = await axios.get(`${baseUrl}/goals`);
+            const completedGoals = res.data.filter(goal => goal.isComplete === true);
+            setPlantAmount(completedGoals.length);
+        } catch (error) {
+            console.error('Error getting info from plant shed:', error);
+            setError('Could not load plant shed.');
+        }
+    }
+
+    useEffect(() => {
+        getPlantAmount();
+    }, []);
 
     return (
         <div>
             <Modal
                 open={open}
                 onClose={close}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
             >
                 <Box sx={style}>
                     <h2 className='title'> your plant shed </h2>
                     <div className='container'>
                         <img src={plantNotifierIcon} className='notifier__icon' />
                         <p className='notifier'>
-                            You have <span className='highlighted'>4</span> plants ready to be placed in your garden!
+                            You have <span className='highlighted'>{plantAmount}</span> plants ready to be placed in your garden!
                         </p>
                     </div>
                 </Box>

@@ -11,7 +11,7 @@ export const WasteGoals = ({ baseUrl }) => {
     const [error, setError] = useState(null);
     const [existingGoals, setExistingGoals] = useState([]);
     const [newGoal, setNewGoal] = useState('');
-    const [editingGoalId, setEditingGoalId] = useState(null); // Track goal being edited
+    const [editingGoalId, setEditingGoalId] = useState(null);
 
     const getAllGoals = async () => {
         try {
@@ -36,30 +36,30 @@ export const WasteGoals = ({ baseUrl }) => {
 
     const handleInputChange = (index, value) => {
         if (index === existingGoals.length) {
-            setNewGoal(value); // New goal input
+            setNewGoal(value);
         } else {
             setExistingGoals(prevGoals =>
                 prevGoals.map((goal, i) => (i === index ? { ...goal, goal: value } : goal))
             );
-            setEditingGoalId(index); // Mark goal as being edited
+            setEditingGoalId(index);
         }
     };
 
 
     const handleBlur = async (index, goalText) => {
-        if (goalText.trim() === '') return; // Don't save empty goals
+        if (goalText.trim() === '') return;
 
         try {
-            if (index === existingGoals.length) { // New goal
+            if (index === existingGoals.length) {
                 await axios.post(`${baseUrl}/goals`, { goal: goalText, isComplete: false });
                 setNewGoal('');
-                getAllGoals(); // Refresh the goal list
-            } else if (editingGoalId !== null) { // Existing goal update
+                getAllGoals();
+            } else if (editingGoalId !== null) {
                 await axios.put(`${baseUrl}/goals/${existingGoals[index].id}`, {
                     ...existingGoals[index],
                     goal: goalText
                 });
-                setEditingGoalId(null); // Clear editing state
+                setEditingGoalId(null);
             }
         } catch (err) {
             console.error(err);

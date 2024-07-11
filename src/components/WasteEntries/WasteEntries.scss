@@ -37,6 +37,22 @@
         }
     }
 
+    &__no-entries {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 50% 0;
+
+        &__icon {
+            width: 2rem;
+        }
+        
+        &__text {
+            color: $grey;
+        }
+    }
+
     &__entry {
         display: flex;
         flex-direction: row;

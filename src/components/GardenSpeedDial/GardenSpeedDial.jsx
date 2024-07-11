@@ -27,7 +27,7 @@ export const GardenSpeedDial = () => {
         <PlantModal open={shedModalOpen} close={handleShedClose} />
             <Box sx={{ height: 120, transform: 'translateZ(0px)', flexGrow: 1 }}>
                 <SpeedDial
-                    ariaLabel="SpeedDial basic example"
+                    ariaLabel='Garden speed dial'
                     sx={{ position: 'absolute', bottom: 0, right: 0 }}
                     icon={<SpeedDialIcon />}
                     FabProps={{

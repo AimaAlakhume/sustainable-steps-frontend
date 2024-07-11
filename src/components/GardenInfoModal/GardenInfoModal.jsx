@@ -22,8 +22,8 @@ export const GardenInfoModal = ({ open, close }) => {
             <Modal
                 open={open}
                 onClose={close}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby='modal-modal-title'
+                aria-describedby='modal-modal-description'
             >
                 <Box sx={style}>
                     <h2 className='garden-info__title'> Welcome to the Garden! </h2>

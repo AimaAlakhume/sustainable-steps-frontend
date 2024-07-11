@@ -49,7 +49,7 @@ export const GreenBotSpeedDial = () => {
 
             <Box sx={{ height: 0, transform: 'translateZ(0px)', flexGrow: 1 }}>
                 <SpeedDial
-                    ariaLabel="SpeedDial basic example"
+                    ariaLabel='GreenBot speed dial'
                     sx={{ position: 'absolute', bottom: 0, right: 0 }}
                     icon={<SpeedDialIcon />}
                     FabProps={{

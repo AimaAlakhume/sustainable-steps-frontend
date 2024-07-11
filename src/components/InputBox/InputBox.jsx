@@ -8,7 +8,7 @@ const Input = React.forwardRef(function CustomInput(props, ref) {
 });
 
 export const UnstyledInputBasic = (props) => {
-  return <Input {...props} aria-label="Demo input" placeholder="Set a waste goal" />;
+  return <Input {...props} aria-label='Goal input' placeholder='Set a waste goal' />;
 }
 
 const grey = {
