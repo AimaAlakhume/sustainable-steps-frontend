@@ -39,14 +39,14 @@ export const AddWasteItem = () => {
             setCategory('');
             setAction('');
         } catch (error) {
-            console.error("Error adding entry:", error);
+            console.error('Error adding entry:', error);
         }
     };
 
     return (
         <section className='main-wrap'>
             <form onSubmit={ handleSubmit }>
-                <FormControl value={item} defaultValue="" required>
+                <FormControl value={item} defaultValue='' required>
                     <Label sx={{
                         fontWeight: '600',
                         fontSize: '.75rem',
@@ -57,14 +57,14 @@ export const AddWasteItem = () => {
                     />
                     <HelperText />
                 </FormControl>
-                <FormControl value={quantity} defaultValue="" required>
+                <FormControl value={quantity} defaultValue='' required>
                     <Label sx={{
                         fontWeight: '600',
                         fontSize: '.75rem',
                         textTransform: 'uppercase'
                     }}>quantity</Label>
                     <StyledInput
-                        type="number"
+                        type='number'
                         onChange={(e) => setQuantity(e.target.value)}
                     />
                     <HelperText />
@@ -72,7 +72,7 @@ export const AddWasteItem = () => {
                 <div className='dropdowns'>
                     <Box sx={{ minWidth: 120 }}>
                         <FormControl>
-                            <InputLabel id="category-label"
+                            <InputLabel id='category-label'
                                 sx={{
                                     margin: '.5rem 0',
                                     textTransform: 'uppercase',
@@ -82,8 +82,8 @@ export const AddWasteItem = () => {
                                     color: customColours['rich-black']
                                 }}>category</InputLabel>
                             <Select
-                                labelId="category-label"
-                                id="category"
+                                labelId='category-label'
+                                id='category'
                                 value={category}
                                 onChange={(e) => setCategory(e.target.value)}
                             >
@@ -99,7 +99,7 @@ export const AddWasteItem = () => {
                     </Box>
                     <Box sx={{ minWidth: 120 }}>
                         <FormControl>
-                            <InputLabel id="action-label"
+                            <InputLabel id='action-label'
                                 sx={{
                                     margin: '.5rem 0',
                                     textTransform: 'uppercase',
@@ -109,8 +109,8 @@ export const AddWasteItem = () => {
                                     color: customColours['rich-black']
                                 }}>action taken</InputLabel>
                             <Select
-                                labelId="action-label"
-                                id="action"
+                                labelId='action-label'
+                                id='action'
                                 value={action}
                                 onChange={(e) => setAction(e.target.value)}
                             >
@@ -122,7 +122,7 @@ export const AddWasteItem = () => {
                             </Select>
                         </FormControl>
                     </Box>
-                    <IconButton type="submit">
+                    <IconButton type='submit'>
                         <SendRoundedIcon />
                     </IconButton>
                 </div>

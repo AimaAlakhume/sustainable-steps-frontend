@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import axios from 'axios';
+import { GoogleMap, useJsApiLoader, MarkerF, InfoWindowF } from '@react-google-maps/api';
 import resourcesMarker from '../../assets/markers/resources-bubble.svg';
 import activismMarker from '../../assets/markers/activism-bubble.svg';
 import recyclingMarker from '../../assets/markers/recycling-bubble.svg';
 
 const apiKey = import.meta.env.VITE_APIKEY;
+const baseUrl = 'http://localhost:8080';
 
 const libraries = ['places'];
 const mapContainerStyle = {
-    width: '100vw',
-    height: '100vh'
+    width: '100%',
+    height: '500px'
 };
 const center = {
     lat: 40.72502225127109,
@@ -17,69 +19,65 @@ const center = {
 };
 
 export const ResourceMap = () => {
-    const { isLoaded, loadError } = useLoadScript({
+    const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: apiKey,
         libraries,
     });
 
     const [activeMarker, setActiveMarker] = useState(null);
 
-    // Sample data
-    const [markers, setMarkers] = useState([
-        { lat: 40.72, lng: -73.98, type: 'recycling', title: 'Recycling Center 1' },
-        { lat: 40.73, lng: -74.00, type: 'activism', title: 'Environmental Rally' },
-        { lat: 40.74, lng: -73.99, type: 'resources', title: 'Sustainable Living Workshop' },
-    ]);
-
-    useEffect(() => {
-        // Fetch marker data from backend/API here
-        // and update the 'markers' state using setMarkers
-    }, []);
+    const [markers, setMarkers] = useState([]);
 
     const handleActiveMarker = (marker) => {
         if (marker === activeMarker) {
-            return;
+            setActiveMarker(null);
+        } else {
+            setActiveMarker(marker);
         }
-        setActiveMarker(marker);
     };
 
-    if (loadError) return <div>Error loading maps</div>;
+    const getAllLocations = async () => {
+        try {
+            const res = await axios.get(`${baseUrl}/locations`);
+            setMarkers(res.data);
+        } catch (error) {
+            console.error('Error fetching locations:', entryRetrievalError);
+            setError('Could not load locations.');
+        }
+    }
+
+    useEffect(() => {
+        getAllLocations();
+    }, []);
+
     if (!isLoaded) return <div>Loading maps...</div>;
 
     return (
         <main>
-            <div>
-                <GoogleMap
-                    mapContainerStyle={mapContainerStyle}
-                    zoom={10}
-                    center={center}
-                >
-                    <Marker 
-                    position = {{lat: 40.72, lng: -73.98}}
-                    icon={{recyclingMarker}}
-                    />
-                    {markers.map((marker, index) => {
-                        const icon = marker.type === 'activism' ? activismMarker : marker.type === 'recycling' ? recyclingMarker : resourcesMarker;
-                        return (
-                            <Marker
-                                key={index}
-                                position={{ lat: marker.lat, lng: marker.lng }}
-                                onClick={() => handleActiveMarker(marker)}
-                                icon={{
-                                    url: icon,
-                                    scaledSize: new window.google.maps.Size(40, 40)
-                                }}
-                            >
-                                {activeMarker === marker && (
-                                    <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                                        <div>{marker.title}</div>
-                                    </InfoWindow>
-                                )}
-                            </Marker>
-                        )
-                    })}
-                </GoogleMap>
-            </div>
+            <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                center={center}
+                zoom={12}
+                options={{ gestureHandling: 'cooperative' }}
+            >
+                {markers.map((marker, index) => (
+                    <MarkerF 
+                        key={index}
+                        position={{ lat: Number(marker.lat), lng: Number(marker.lng) }}
+                        onClick={() => handleActiveMarker(marker)}
+                        icon={{
+                            url: marker.type === 'politics' ? activismMarker : marker.type === 'waste management' ? recyclingMarker : resourcesMarker,
+                            scaledSize: new window.google.maps.Size(40, 40)
+                        }}
+                    >
+                        {activeMarker === marker && (
+                            <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
+                                <div>{marker.location}</div>
+                            </InfoWindowF>
+                        )}
+                    </MarkerF>
+                ))}
+            </GoogleMap>
         </main>
     );
 };

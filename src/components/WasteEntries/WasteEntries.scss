@@ -1,0 +1,78 @@
+@use '../../styles/partials/resets' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography' as *;
+
+.diary {
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+        flex-direction: row;
+    }
+
+    &__label {
+        color: $green-1;
+        font-size: 0.6rem;
+        font-family: 'Playpen Sans';
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    &__entries {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 1.5rem;
+        gap: 1rem;
+        margin-bottom: 1rem;
+
+        @include tablet {
+            width: 50%;
+            margin: 0;
+        }
+
+        &__title {
+            color: $green-4;
+        }
+    }
+
+    &__no-entries {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 50% 0;
+
+        &__icon {
+            width: 2rem;
+        }
+        
+        &__text {
+            color: $grey;
+        }
+    }
+
+    &__entry {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+        border: 0.0625rem solid #DAE2ED;
+        border-radius: 0.5rem;
+
+        &__item-name {
+            font-size: .75rem;
+        }
+
+        &__details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__quantity {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+}
