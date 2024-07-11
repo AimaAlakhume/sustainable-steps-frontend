@@ -7,8 +7,8 @@ const Input = React.forwardRef(function CustomInput(props, ref) {
   return <BaseInput slots={{ input: InputElement }} {...props} ref={ref} />;
 });
 
-export const UnstyledInputBasic = () => {
-  return <Input aria-label="Demo input" placeholder="Set a waste goal" />;
+export const UnstyledInputBasic = (props) => {
+  return <Input {...props} aria-label="Demo input" placeholder="Set a waste goal" />;
 }
 
 const grey = {
@@ -27,8 +27,8 @@ const grey = {
 const InputElement = styled('input')(
   ({ theme }) => `
   width: 320px;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
+  font-family: 'Playpen Sans';
+  font-size: .75rem;
   font-weight: 400;
   line-height: 1.5;
   padding: 8px 12px;
