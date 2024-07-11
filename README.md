@@ -48,8 +48,7 @@ Key considerations:
 
 ### APIs
 
-*   Google Maps API: To display recycling locations and resources on the map.
-*   Google's Gemini AI API: To generate locations relevant to sustainability in the user's area.
+*   Google Maps API: To display recycling locations and resources on the map and generate locations relevant to sustainability in the user's area.
 
 ### Sitemap
 
@@ -74,8 +73,16 @@ https://excalidraw.com/#json=R8vDrsqZGr0hPflgLUfj9,UQQj3b_Dd6j_vnpUSw-wSw
 ### Endpoints
 
 *   **GET /entries:** Get waste log entries.
-*   **POST /entries:** Log new waste item(s).
+*   **POST /entries:** Log new waste items.
 *   **GET /guide:** Get comprehensive waste sorting guide.
+*   **GET /shed:** Get the user's plant data.
+*   **GET /shed:** Add new plant.
+*   **GET /shed/types:** Get an array of the plant types.
+*   **GET /locations:** Get sustainability resource data.
+*   **GET /goals:** Get user's goals.
+*   **POST /goals:** Add new goal.
+*   **PUT /goals:** Update goal.
+*   **DELETE /goals:** Delete goal.
 
 ### Auth
 
@@ -84,13 +91,13 @@ https://excalidraw.com/#json=R8vDrsqZGr0hPflgLUfj9,UQQj3b_Dd6j_vnpUSw-wSw
 ## Roadmap (Sprint 1)
 
 *   **Week 1:** Set up project structure, create basic frontend components, and implement user authentication. Develop the WasteWise feature (waste sorting guide). Implement Waste Diary feature (log entries, goal setting, progress tracking).
-*   **Week 2:** Integrate Google Maps API and display recycling locations and resources in GreenBot. Use Gemini AI API to pull a database of locations depending on the user's location. Complete styling of the Garden and connect it to the Waste Diary.
+*   **Week 2:** Integrate Google Maps API and display recycling locations and resources in GreenBot. Use Gemini AI API to pull a database of locations depending on the user's location. Complete the styling of the Garden and connect it to the Waste Diary.
 
 ## Nice-to-haves
 
-*   Provide articles, tips, and tutorials on sustainable living.
-*   The user receives seeds instead of plants, which grow into plants over time, providing a visual representation of the user's progress and commitment.
-*   The type of plant earned corresponds to the type of goal completed, adding an element of personalization and surprise.
+*   Provide articles and tutorials on sustainable living from government entities and renowned organizations.
+*   Implement logic so that the user receives seeds instead of plants, which grow into plants over time, providing a visual representation of the user's progress and commitment.
+*   Implement logic so that the type of plant earned corresponds to the type of goal completed, adding an element of personalization and surprise.
 *   Implement user login/sign-up using a secure authentication system.
 *   Consider using JSON Web Tokens (JWT) for authorization.
 
