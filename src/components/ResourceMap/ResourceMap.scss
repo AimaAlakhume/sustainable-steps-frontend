@@ -1,0 +1,18 @@
+@use '../../styles/partials/resets' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/typography' as *;
+
+.marker {
+
+    &__location {
+        font-family: 'Playpen Sans';
+        font-size: 1rem;
+    }
+
+    &__address {
+        font-family: 'Playpen Sans';
+        font-size: .75rem;
+    }
+}

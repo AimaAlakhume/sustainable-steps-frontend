@@ -31,8 +31,8 @@ export const GreenBotSpeedDial = () => {
             <GreenBotMarkerModal
                 open={recyclingModalOpen}
                 close={handleRecyclingClose}
-                title={'Recycling Centers & Initiatives'}
-                text={'Find nearby recycling centers and initiatives that make it easy to properly dispose of your waste and reduce your environmental footprint.'}
+                title={'Waste Management Centers'}
+                text={'Find nearby recycling and waste management centers that make it easy to properly dispose of your waste and reduce your environmental footprint.'}
             />
             <GreenBotMarkerModal
                 open={activismModalOpen}
