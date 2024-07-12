@@ -51,7 +51,7 @@ export const PlantModal = ({ open, close }) => {
                     <div className='container'>
                         <img src={plantNotifierIcon} className='notifier__icon' />
                         <p className='notifier'>
-                            You have <span className='highlighted'>{plantAmount}</span> plants ready to be placed in your garden!
+                            You have <span className='highlighted'>{plantAmount}</span> plant(s) ready to be placed in your garden!
                         </p>
                     </div>
                 </Box>
