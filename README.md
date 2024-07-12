@@ -2,7 +2,7 @@
 
 ## Overview
 
-Sustainable Steps is a mobile app designed to simplify and gamify sustainable living. It offers tools to help users sort waste, find local recycling resources, and track their eco-friendly progress through rewards.
+Sustainable Steps is a web app designed to simplify and gamify sustainable living. It offers tools to help users sort waste, find local recycling resources, and track their eco-friendly progress through rewards.
 
 ### Problem
 
