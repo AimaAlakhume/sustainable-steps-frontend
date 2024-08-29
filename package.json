@@ -18,7 +18,7 @@
     "@mui/x-date-pickers": "^7.8.0",
     "@react-google-maps/api": "^2.19.3",
     "@vis.gl/react-google-maps": "^1.1.0",
-    "axios": "^1.7.2",
+    "axios": "^1.7.4",
     "dayjs": "^1.11.11",
     "install": "^0.13.0",
     "lodash": "^4.17.21",
